@@ -9,6 +9,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 SOUNDCLOUD_ARTWORK_PATH = 'pmg/static/resources/images/logo-artwork.png'
+SOUNDCLOUD_MAX_RETRIES = 3
 
 
 class SoundcloudTrack(db.Model):
@@ -43,6 +44,7 @@ class SoundcloudTrack(db.Model):
     uri = db.Column(db.String())
     # Last known value of SoundCloud's opinion of the track state
     state = db.Column(db.String())
+    retries = db.Column(db.Integer(), default=0)
 
     def __str__(self):
         return unicode(self).encode('utf-8')
